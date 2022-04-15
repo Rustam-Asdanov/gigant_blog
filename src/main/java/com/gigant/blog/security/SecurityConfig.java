@@ -18,11 +18,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage().permitAll()
-                .defaultSuccessUrl()
+//                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/",true)
                 .and()
                 .logout()
-                .defaultLogoutSuccessHandlerFor();
+                .logoutSuccessUrl("/");
     }
 
 

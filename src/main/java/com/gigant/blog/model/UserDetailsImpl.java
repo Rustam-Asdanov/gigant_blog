@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
-@Component
 public class UserDetailsImpl implements UserDetails {
 
     private final String username;
