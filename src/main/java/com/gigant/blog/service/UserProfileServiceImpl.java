@@ -22,26 +22,39 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public List<UserProfile> getAllUserProfiles() {
-        return null;
+        return userProfileRepository.findAll();
     }
 
     @Override
     public void saveUserProfile(UserProfile userProfile) {
-
+        userProfileRepository.save(userProfile);
     }
 
     @Override
     public void deleteUserProfileById(long id) {
-
+        userProfileRepository.deleteById(id);
     }
 
     @Override
     public UserProfile getUserProfileById(long id) {
-        return null;
+
+        UserProfile userProfile = userProfileRepository.getUserProfileById(id);
+
+        if(userProfile == null){
+            throw new IllegalStateException(String.format("User with id %d not found",id));
+        }
+
+        return userProfile;
     }
 
     @Override
     public UserProfile getUserProfileByUsername(String username) {
-        return null;
+        UserProfile userProfile = userProfileRepository.getUserProfileByUsername(username);
+
+        if(userProfile == null){
+            throw new IllegalStateException(String.format("User with id %s not found",username));
+        }
+
+        return userProfile;
     }
 }
