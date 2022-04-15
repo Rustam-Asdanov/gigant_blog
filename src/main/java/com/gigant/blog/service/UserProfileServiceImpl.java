@@ -5,6 +5,7 @@ import com.gigant.blog.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
 
     @Override
-    public void saveUserProfile(UserProfile userProfile) {
+    public void saveUserProfile(UserProfile userProfile, MultipartFile multipartFile) {
         userProfileRepository.save(userProfile);
     }
 
