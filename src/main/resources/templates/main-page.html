@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* Header */
+
+
+        header {
+            background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
+            text-align: center;
+            width: 100%;
+            height: auto;
+            background-size: cover;
+            background-attachment: fixed;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            border-radius: 0 0 85% 85% / 30%;
+        }
+
+        header .overlay {
+            width: 100%;
+            height: 100%;
+            padding: 50px;
+            color: #FFF;
+            text-shadow: 1px 1px 1px #333;
+            background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+
+        }
+
+        header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        header h3,
+        p {
+            font-family: 'Open Sans', sans-serif;
+            margin-bottom: 30px;
+        }
+
+        header button {
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: #333;
+            background: #fff;
+            margin-bottom: 50px;
+            box-shadow: 0 3px 20px 0 #0000003b;
+        }
+
+        header button:hover {
+            cursor: pointer;
+        }
+
+
+        /* Header */
+
+
+        body {
+            background-color: #80afcd;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.4;
+        }
+
+        section {
+            position: absolute;
+            top: 65%;
+            background-color: rgba(194, 182, 182, 0.599);
+            padding: 10px;
+        }
+
+        section .container {
+            background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 350px;
+            height: 500px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+            border-radius: 20px;
+        }
+
+        section .container .container__info {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 20%;
+            display: flex;
+            align-items: flex-end;
+            padding: 15px 30px;
+            color: #fff;
+        }
+
+        section .container .container__info span {
+            margin-right: 20px;
+        }
+
+        section .container .container__info i {
+            margin-right: 10px;
+        }
+
+        section .container .container__profile {
+            background-color: #e4f2fd;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        section .container .container__profile img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-position: center;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        section .container .container__profile h2 {
+            color: #334454;
+            font-size: 1.2rem;
+        }
+
+        section .container .container__profile p {
+            color: #a1b2bc;
+            font-size: 0.8rem;
+        }
+
+        section .container .container__profile p b {
+            font-style: italic;
+        }
+
+        /* section */
+
+        /* footer */
+
+        #myfoot{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: -100%;
+        }
+
+        footer .page-wrapper {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 11111;
+            top: 35px;
+        }
+
+        footer p,
+        footer strong,
+        footer b,
+        footer {
+            color: #b0b0b0;
+        }
+
+        footer .footer-top {
+            background: #303030;
+            background-size: cover;
+            background-position: center;
+            padding: 0 0 20px;
+            font-family: rubik;
+            padding-top: 30px;
+
+        }
+
+        footer .footer-top,
+        .footer-bottom {
+            background-color: #1c1f2f;
+        }
+
+        footer .footer-bottom {
+            padding: 15px 0;
+            border-top: 1px solid #313646;
+            background-color: #181828 !important;
+            color: #b0b0b0;
+            font-family: rubik;
+        }
+
+        :root {
+            --color: #99a9b5;
+            --padding-top: 15px;
+        }
+
+
+        .footer-site-info {
+            font-size: 92.86%;
+        }
+
+        footer #footer-navigation,
+        #footer-navigation li a:hover,
+        .custom-footer,
+        .custom-footer li a:hover {
+            color: white;
+        }
+
+        footer #footer-navigation,
+        #footer-navigation li a,
+        .custom-footer,
+        .custom-footer li a {
+            color: #99a9b5;
+            padding-top: 15px;
+        }
+
+        footer .footer-bottom ul {
+            margin: 0;
+        }
+
+        footer .inline-inside {
+            font-size: 0;
+            line-height: 0;
+        }
+
+        footer .clearfix:after,
+        .clearfix:before {
+            content: "";
+            display: table;
+        }
+
+        footer #footer-menu li {
+            display: inline-block;
+            padding: 0 21px;
+            position: relative;
+            line-height: 1;
+        }
+
+        footer #footer-navigation,
+        #footer-navigation li a,
+        .custom-footer,
+        .custom-footer li a {
+            color: #99a9b5;
+            padding-top: 15px;
+        }
+
+        footer #footer-navigation,
+        #footer-navigation li a,
+        .custom-footer,
+        .custom-footer li a {
+            color: #99a9b5;
+            padding-top: 15px;
+        }
+
+        footer #footer-menu li+li:before {
+            content: '';
+            width: 0;
+            height: 100%;
+            position: absolute;
+            left: -1px;
+            top: 0;
+            font-size: 0;
+            border-left: 1px solid #232234;
+            border-right: 1px solid #333146;
+        }
+
+
+        footer navigation li a,
+        .custom-footer,
+        .custom-footer li a {
+            color: #99a9b5;
+            padding-top: 15px;
+        }
+
+        footer #footer-socials {
+            text-align: right;
+        }
+
+        footer #footer-socials .socials {
+            text-align: right;
+            margin: 0 -7px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        footer a.socials-item {
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            -o-transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            margin: 0 5px;
+            line-height: 16px;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #141421;
+            border: 1px solid #2e2e4c;
+            box-shadow: 3px 9px 16px rgb(0, 0, 0, 0.4), -3px -3px 10px rgba(255, 255, 255, 0.06), inset 14px 14px 26px rgb(0, 0, 0, 0.3), inset -3px -3px 15px rgba(255, 255, 255, 0.05);
+        }
+
+        footer .socials-item i {
+            display: inline-block;
+            font-weight: normal;
+            width: 1em;
+            height: 1em;
+            line-height: 1;
+            font-size: 16px;
+            text-align: center;
+            vertical-align: top;
+            font-feature-settings: normal;
+            font-kerning: auto;
+            font-language-override: normal;
+            font-size-adjust: none;
+            font-stretch: normal;
+            font-style: normal;
+            font-synthesis: weight style;
+            font-variant: normal;
+            font-weight: normal;
+            text-rendering: auto;
+        }
+
+        footer .facebook {
+            color: #4e64b5;
+        }
+
+        footer .twitter {
+            color: #00aced;
+        }
+
+        footer .instagram {
+            color: #9a8f62;
+        }
+
+        footer .youtube {
+            color: #c82929;
+        }
+
+        footer .telegram {
+            color: #2ca5e0;
+        }
+
+
+        footer a.socials-item:hover {
+            box-shadow: 0 0px 20px rgba(84, 1, 74, 0.7);
+            border-color: rgba(255, 6, 224, 0.61);
+            background: linear-gradient(to right, rgba(255, 9, 9, 0.12941176470588237), #c000ffb5, rgba(255, 0, 94, 0.14));
+        }
+
+        footer .footer-bottom a:hover {
+            color: white;
+        }
+
+
+        footer p,
+        footer li {
+            font-size: 15px;
+            line-height: 22px;
+        }
+
+
+        footer .widget {
+            margin-bottom: 50px;
+        }
+
+        footer .footer-title {
+            margin-bottom: 40px;
+            color: #fff;
+            font-weight: 500;
+            text-transform: capitalize;
+            padding-bottom: 15px;
+            font-size: 16px;
+            position: relative;
+        }
+
+        footer .footer-title:after {
+            width: 50px;
+            background: #fff;
+            opacity: 0.2;
+            height: 1px;
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        footer .gem-contacts-item {
+            padding-top: 10px;
+            font-size: 15px;
+        }
+
+        footer .gem-contacts-item i {
+            padding-right: 10px;
+        }
+
+        footer .widget ul {
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        footer .posts li {
+            border-bottom: 1px solid #393d50;
+            padding-bottom: 12px;
+            padding-top: 6px;
+        }
+
+        footer p,
+        footer li {
+            font-size: 15px;
+            line-height: 22px;
+        }
+
+        footer .gem-pp-posts-date {
+            color: #00bcd4;
+            font-size: 89.5%;
+        }
+
+        footer p {
+            line-height: 24px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        footer .wpcf7-form-control-wrap .wpcf7-form-control {
+            padding: 7px !important;
+            width: 100%;
+        }
+
+        footer .wpcf7-form-control-wrap input {
+            background: #1c1f2f;
+            overflow: hidden;
+            border: 1px solid #2e344d;
+            background-color: #1c1f2f;
+            box-shadow: 10px 10px 36px rgb(0, 0, 0, 0.5), -13px -13px 23px rgba(255, 255, 255, 0.03);
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        footer .wpcf7-form-control-wrap input:hover {
+            background-color: transparent;
+            box-shadow: 10px 10px 36px rgb(0, 0, 0, 0.5), -13px -13px 23px rgba(255, 255, 255, 0.03), inset 14px 14px 70px rgb(0, 0, 0, 0.2), inset -15px -15px 30px rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        footer .wpcf7 .wpcf7-form .contact-form-footer textarea {
+            height: 160px;
+            width: 100%;
+        }
+
+        footer .wpcf7-form-control-wrap textarea:hover {
+            background-color: transparent;
+            box-shadow: 10px 10px 36px rgb(0, 0, 0, 0.5), -13px -13px 23px rgba(255, 255, 255, 0.03), inset 14px 14px 70px rgb(0, 0, 0, 0.2), inset -15px -15px 30px rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        footer .wpcf7-form-control-wrap textarea {
+            background: #1c1f2f;
+            overflow: hidden;
+            border: 1px solid #2e344d;
+            background-color: #1c1f2f;
+            box-shadow: 10px 10px 36px rgb(0, 0, 0, 0.5), -13px -13px 23px rgba(255, 255, 255, 0.03);
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        footer textarea {
+            overflow: auto;
+            resize: vertical;
+        }
+
+        footer .wpcf7 .wpcf7-form .contact-form-footer .wpcf7-submit {
+            width: 100%;
+            padding: 11px;
+            margin: 0;
+            line-height: 0;
+        }
+
+        footer .wpcf7-form .contact-form-footer .wpcf7-submit {
+            background-color: #394050;
+            color: #99a9b5;
+            border: none;
+            cursor: pointer;
+            padding: 15px 40px;
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.5s;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, .5);
+            box-shadow: none;
+            text-transform: uppercase;
+            outline: none !important;
+            background-color: #1c1f2f;
+            border-radius: 5px;
+            min-width: 140px;
+            /* box-shadow: 10px 10px 36px rgb(0,0,0,0.5), -13px -13px 23px rgba(255,255,255, 0.03), inset 14px 14px 70px rgb(0,0,0,0.2), inset -15px -15px 30px rgba(255,255,255, 0.04); */
+            box-shadow: 3px 9px 16px rgb(0, 0, 0, 0.4), -3px -3px 10px rgba(255, 255, 255, 0.06), inset 14px 14px 26px rgb(0, 0, 0, 0.3), inset -3px -3px 15px rgba(255, 255, 255, 0.05);
+            border-width: 1px 0px 0px 1px;
+            border-style: solid;
+            border-color: #2e344d;
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        footer .wpcf7-form input[type=submit] {
+            height: 40px;
+            line-height: 21px;
+            padding: 10px 40px;
+            font-size: 14px;
+        }
+
+        footer .posts li a {
+            color: #99a9b5;
+        }
+
+        footer .wpcf7-form .contact-form-footer .wpcf7-submit:hover {
+            box-shadow: 0 0px 20px rgba(84, 1, 74, 0.7);
+            border-color: rgba(255, 6, 224, 0.61);
+            background: linear-gradient(to right, rgba(255, 9, 9, 0.12941176470588237), #c000ffb5, rgba(255, 0, 94, 0.14));
+            color: white;
+        }
+
+        footer img {
+            border-style: none;
+            height: auto;
+            max-width: 100%;
+            vertical-align: middle;
+        }
+
+        footer .widget_gallery a {
+            display: inline-block;
+        }
+
+        footer .widget ul {
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        footer .widget_gallery ul {
+            padding-left: 0;
+            display: table;
+        }
+
+        footer .widget_gallery li {
+            display: inline-block;
+            width: 33.33%;
+            float: left;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            padding: 2px;
+        }
+
+        footer .widget_gallery.gallery-grid-4 li {
+            width: 30%;
+        }
+
+
+        footer #waterdrop {
+            height: 30px;
+        }
+
+        footer #waterdrop canvas {
+            bottom: -70px !important;
+        }
+
+        footer .footer-site-info {
+            padding-top: 10px;
+        }
+
+
+
+        /* footer */
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="overlay">
+            <h1>Simply The Best</h1>
+            <h3>Reasons for Choosing US</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero nostrum quis, odio veniam itaque ullam
+                debitis qui magnam consequatur ab. Vero nostrum quis, odio veniam itaque ullam debitis qui magnam
+                consequatur ab.</p>
+            <br>
+            <button>READ MORE</button>
+        </div>
+    </header>
+    <section class="row container">
+        <div class="container col-6 col-md-4 g-3">
+            <div class="container__info">
+                <span><i class="fas fa-eye"></i>2350</span>
+                <span><i class="fas fa-comment-alt"></i>624</span>
+                <span><i class="fas fa-download"></i>1470</span>
+            </div>
+            <di class="container__profile">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    alt="people" />
+                <div class="container__profile__text">
+                    <h2>White Mountains</h2>
+                    <p>by <b>Joseph Therrien</b></p>
+                </div>
+            </di>
+        </div>
+        <div class="container col-6 col-md-4 g-3">
+            <div class="container__info">
+                <span><i class="fas fa-eye"></i>2350</span>
+                <span><i class="fas fa-comment-alt"></i>624</span>
+                <span><i class="fas fa-download"></i>1470</span>
+            </div>
+            <di class="container__profile">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    alt="people" />
+                <div class="container__profile__text">
+                    <h2>White Mountains</h2>
+                    <p>by <b>Joseph Therrien</b></p>
+                </div>
+            </di>
+        </div>
+        <div class="container col-md-4 g-3">
+            <div class="container__info">
+                <span><i class="fas fa-eye"></i>2350</span>
+                <span><i class="fas fa-comment-alt"></i>624</span>
+                <span><i class="fas fa-download"></i>1470</span>
+            </div>
+            <di class="container__profile">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    alt="people" />
+                <div class="container__profile__text">
+                    <h2>White Mountains</h2>
+                    <p>by <b>Joseph Therrien</b></p>
+                </div>
+            </di>
+        </div>
+        <div class="container col-md-4 g-3">
+            <div class="container__info">
+                <span><i class="fas fa-eye"></i>2350</span>
+                <span><i class="fas fa-comment-alt"></i>624</span>
+                <span><i class="fas fa-download"></i>1470</span>
+            </div>
+            <di class="container__profile">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    alt="people" />
+                <div class="container__profile__text">
+                    <h2>White Mountains</h2>
+                    <p>by <b>Joseph Therrien</b></p>
+                </div>
+            </di>
+        </div>
+        <div class="container col-md-4 g-3">
+            <div class="container__info">
+                <span><i class="fas fa-eye"></i>2350</span>
+                <span><i class="fas fa-comment-alt"></i>624</span>
+                <span><i class="fas fa-download"></i>1470</span>
+            </div>
+            <di class="container__profile">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    alt="people" />
+                <div class="container__profile__text">
+                    <h2>White Mountains</h2>
+                    <p>by <b>Joseph Therrien</b></p>
+                </div>
+            </di>
+        </div>
+        <div class="container col-md-4 g-3">
+            <div class="container__info">
+                <span><i class="fas fa-eye"></i>2350</span>
+                <span><i class="fas fa-comment-alt"></i>624</span>
+                <span><i class="fas fa-download"></i>1470</span>
+            </div>
+            <di class="container__profile">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    alt="people" />
+                <div class="container__profile__text">
+                    <h2>White Mountains</h2>
+                    <p>by <b>Joseph Therrien</b></p>
+                </div>
+            </di>
+        </div>
+        
+    </section>
+
+
+    <footer id="myfoot">
+
+        <div class="page-wrapper">
+            <div id="waterdrop"></div>
+            <footer>
+                <div class="footer-top">
+                    <div class="pt-exebar">
+
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-12 col-sm-12 footer-col-3">
+                                <div class="widget footer_widget">
+                                    <h5 class="footer-title">Address</h5>
+                                    <div class="gem-contacts">
+                                        <div class="gem-contacts-item gem-contacts-address">Corporate Office :<br> Doon
+                                            House, B-275(A), First floor
+                                            Sector-57, Shushant Lok 3
+                                            Near Hong Kong Bazzar, Gurugram Pin 122001, Haryana.
+                                        </div>
+                                        <div class="gem-contacts-item gem-contacts-phone"><i class="fa fa-phone"
+                                                aria-hidden="true"></i> Phone: <a href="">+91-9122588799</a></div>
+
+                                        <div class="gem-contacts-item gem-contacts-address mt-2">Reg. Office :<br> Doon
+                                            House, D2/3,
+                                            4th Floor, Chandra Tower, IDBI Bank Building
+                                            Dimna Road, Mango, Jamshedpur-831012, Jharkhand.</div>
+                                        <div class="gem-contacts-item gem-contacts-phone"><i class="fa fa-phone"
+                                                aria-hidden="true"></i> Phone: <a>+91 9122588799</a></div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="widget footer_widget">
+                                            <h5 class="footer-title">Recent News</h5>
+                                            <ul class="posts  styled">
+                                                <li class="clearfix gem-pp-posts">
+                                                    <div class="gem-pp-posts-text">
+                                                        <div class="gem-pp-posts-item">
+                                                            <a href="#">Want to start Your Own Play School.
+                                                            </a>
+                                                        </div>
+                                                        <div class="gem-pp-posts-date">Call +91-9122588799</div>
+                                                    </div>
+                                                </li>
+                                                <li class="clearfix gem-pp-posts">
+                                                    <div class="gem-pp-posts-text">
+                                                        <div class="gem-pp-posts-item">
+                                                            <a href="#">Now we are in Faridabad,Now we are in DaudNagar.
+                                                            </a>
+                                                        </div>
+                                                        <div class="gem-pp-posts-date">Call +91-9122588799,
+                                                            +91-9122588799</div>
+                                                    </div>
+                                                </li>
+                                                <li class="clearfix gem-pp-posts">
+                                                    <div class="gem-pp-posts-text">
+                                                        <div class="gem-pp-posts-item">
+                                                            <a href="">Now we are in Ranchi, Admission open
+                                                            </a>
+                                                        </div>
+                                                        <div class="gem-pp-posts-date">Call +91-9122588799,
+                                                            +91-9122588799</div>
+                                                    </div>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="widget">
+                                            <h5 class="footer-title">Email Us</h5>
+                                            <div class="textwidget">
+                                                <div role="form" class="wpcf7" id="wpcf7-f4-o1" lang="en-US" dir="ltr">
+
+                                                    <form method="post" class="wpcf7-form" novalidate="novalidate">
+
+                                                        <div class="contact-form-footer">
+                                                            <p><span class="wpcf7-form-control-wrap your-first-name"><input
+                                                                        type="text" name="your-first-name" value=""
+                                                                        size="40" class="wpcf7-form-control wpcf7-text"
+                                                                        aria-invalid="false"
+                                                                        placeholder="Your name"></span></p>
+                                                            <p><span class="wpcf7-form-control-wrap your-email_1"><input
+                                                                        type="email" name="your-email_1" value=""
+                                                                        size="40"
+                                                                        class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email"
+                                                                        aria-invalid="false"
+                                                                        placeholder="Your email"></span></p>
+                                                            <p><span class="wpcf7-form-control-wrap your-message"><textarea
+                                                                        name="your-message" cols="40" rows="10"
+                                                                        class="wpcf7-form-control wpcf7-textarea"
+                                                                        aria-invalid="false"
+                                                                        placeholder="Your message"></textarea></span>
+                                                            </p>
+                                                            <div><input type="submit" value="Send"
+                                                                    class="wpcf7-form-control wpcf7-submit"><span
+                                                                    class="ajax-loader"></span></div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-3 col-md-5 col-sm-12 footer-col-4">
+                                <div class="widget widget_gallery gallery-grid-4">
+                                    <h5 class="footer-title">Our Gallery</h5>
+                                    <ul class="magnific-image">
+
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                        <li><a class="magnific-anchor"><img
+                                                    src="https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=414&q=80"
+                                                    alt=""></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="footer-site-info">2020 © <a
+                                        href="https://www.youtube.com/watch?v=pdr4IzBpacI&t=34s" target="_blank">Top
+                                        HTML & CSS Program </a></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <nav id="footer-navigation" class="site-navigation footer-navigation centered-box"
+                                    role="navigation">
+                                    <ul id="footer-menu" class="nav-menu styled clearfix inline-inside">
+                                        <li id="menu-item-26"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26">
+                                            <a href="#">Support</a></li>
+                                        <li id="menu-item-27"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-27">
+                                            <a href="#">Contact Us</a></li>
+                                        <li id="menu-item-28"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28">
+                                            <a href="#">Disclaimer</a></li>
+                                        <li id="menu-item-29"
+                                            class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29">
+                                            <a href="#">Add more</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div id="footer-socials">
+                                    <div class="socials inline-inside socials-colored">
+
+                                        <a href="#" target="_blank" title="Facebook" class="socials-item">
+                                            <i class="fab fa-facebook-f facebook"></i>
+                                        </a>
+                                        <a href="#" target="_blank" title="Twitter" class="socials-item">
+                                            <i class="fab fa-twitter twitter"></i>
+
+                                        </a>
+                                        <a href="#" target="_blank" title="Instagram" class="socials-item">
+                                            <i class="fab fa-instagram instagram"></i>
+                                        </a>
+                                        <a href="#" target="_blank" title="YouTube" class="socials-item">
+                                            <i class="fab fa-youtube youtube"></i>
+                                        </a>
+                                        <a href="#" target="_blank" title="Telegram" class="socials-item">
+                                            <i class="fab fa-telegram telegram"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="https://daniellaharel.com/raindrops/js/raindrops.js"></script>
+
+        <script>
+            jQuery('#waterdrop').raindrops({
+                color: '#1c1f2f',
+                canvasHeight: 150,
+                density: 0.1,
+                frequency: 20
+            });
+        </script>
+
+    </footer>
+</body>
+
+</html>
