@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static com.gigant.blog.security.UserRole.GUEST;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -33,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserDetailsImpl userDetailsImpl = new UserDetailsImpl(
                 userProfile.getUsername(),
                 passwordEncoder.encode(userProfile.getPassword()),
-                null,
+                GUEST.getSimpleGrantedAuthorities(),
                 true,
                 true,
                 true,
