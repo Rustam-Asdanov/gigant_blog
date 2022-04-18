@@ -22,7 +22,7 @@ public class MainController {
 
     @GetMapping
     public String getMainPage(){
-        return "";
+        return "main-page";
     }
 
     @GetMapping("/signup")

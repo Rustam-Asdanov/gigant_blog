@@ -31,6 +31,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserDetails getUserDetailsByUsername(String username){
 
         UserProfile userProfile = userProfileService.getUserProfileByUsername(username);
+        if(userProfile == null){
+            return (UserDetails) new UsernameNotFoundException(String.format("Username %s not found",username));
+        }
 
         UserDetailsImpl userDetailsImpl = new UserDetailsImpl(
                 userProfile.getUsername(),

@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color: #99a9b5;
+    --padding-top: 15px;
+}
+
+
+/* Header */
+
+
+header {
+    background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
+    text-align: center;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    border-radius: 0 0 85% 85% / 30%;
+}
+
+header .overlay {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    color: #FFF;
+    text-shadow: 1px 1px 1px #333;
+    background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 80px;
+    margin-bottom: 30px;
+}
+
+header h3,
+p {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 30px;
+}
+
+header button {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: #333;
+    background: #fff;
+    margin-bottom: 50px;
+    box-shadow: 0 3px 20px 0 #0000003b;
+}
+
+header button:hover {
+    cursor: pointer;
+}
+
+
+/* Header */
+
+
+body {
+    background-color: #80afcd;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.4;
+}
+
+section {
+    position: relative;
+    background-color: rgba(194, 182, 182, 0.599);
+    padding: 10px;
+}
+
+section .container {
+    background: url("https://images.unsplash.com/photo-1574007557239-acf6863bc375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 350px;
+    height: 500px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+    border-radius: 20px;
+}
+
+section .container .container__info {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 20%;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px 30px;
+    color: #fff;
+}
+
+section .container .container__info span {
+    margin-right: 20px;
+}
+
+section .container .container__info i {
+    margin-right: 10px;
+}
+
+section .container .container__profile {
+    background-color: #e4f2fd;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+section .container .container__profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-position: center;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+section .container .container__profile h2 {
+    color: #334454;
+    font-size: 1.2rem;
+}
+
+section .container .container__profile p {
+    color: #a1b2bc;
+    font-size: 0.8rem;
+}
+
+section .container .container__profile p b {
+    font-style: italic;
+}
+
+/* section */
