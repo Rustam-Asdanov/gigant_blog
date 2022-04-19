@@ -1,7 +1,7 @@
 package com.gigant.blog.service;
 
+import com.gigant.blog.model.Account;
 import com.gigant.blog.model.UserDetailsImpl;
-import com.gigant.blog.model.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,30 +14,28 @@ import static com.gigant.blog.security.UserRole.GUEST;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserProfileService userProfileService;
+    private final AccountService accountService;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserDetailsServiceImpl(UserProfileService userProfileService, PasswordEncoder passwordEncoder) {
-        this.userProfileService = userProfileService;
+    public UserDetailsServiceImpl(AccountService accountService, PasswordEncoder passwordEncoder) {
+        this.accountService = accountService;
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return getUserDetailsByUsername(username);
+        return getUserDetails(username);
     }
 
-    private UserDetails getUserDetailsByUsername(String username){
+    private UserDetails getUserDetails(String username){
 
-        UserProfile userProfile = userProfileService.getUserProfileByUsername(username);
-        if(userProfile == null){
-            return (UserDetails) new UsernameNotFoundException(String.format("Username %s not found",username));
-        }
+        Account theAccount = accountService.getAccountByUsername(username);
 
-        UserDetailsImpl userDetailsImpl = new UserDetailsImpl(
-                userProfile.getUsername(),
-                passwordEncoder.encode(userProfile.getPassword()),
+        UserDetailsImpl userDetails = new UserDetailsImpl(
+                theAccount.getUsername(),
+                passwordEncoder.encode(theAccount.getPassword()),
                 GUEST.getSimpleGrantedAuthorities(),
                 true,
                 true,
@@ -45,7 +43,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 true
         );
 
-        return userDetailsImpl;
-
+        return userDetails;
     }
 }

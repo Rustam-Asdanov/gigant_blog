@@ -1,43 +1,40 @@
 package com.gigant.blog.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
 
     private final String username;
     private final String password;
-    private final Collection<? extends GrantedAuthority> authorities;
+    private final Set<? extends GrantedAuthority> getAuthorities;
     private final boolean isAccountNonExpired;
     private final boolean isAccountNonLocked;
     private final boolean isCredentialsNonExpired;
     private final boolean isEnabled;
 
-    @Autowired
     public UserDetailsImpl(String username,
                            String password,
-                           Collection<? extends GrantedAuthority> authorities,
+                           Set<? extends GrantedAuthority> getAuthorities,
                            boolean isAccountNonExpired,
                            boolean isAccountNonLocked,
                            boolean isCredentialsNonExpired,
                            boolean isEnabled) {
         this.username = username;
         this.password = password;
-        this.authorities = authorities;
+        this.getAuthorities = getAuthorities;
         this.isAccountNonExpired = isAccountNonExpired;
         this.isAccountNonLocked = isAccountNonLocked;
         this.isCredentialsNonExpired = isCredentialsNonExpired;
         this.isEnabled = isEnabled;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return getAuthorities;
     }
 
     @Override

@@ -1,31 +1,48 @@
 package com.gigant.blog.config;
 
+import com.gigant.blog.model.Account;
+import com.gigant.blog.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.Date;
+
 
 @Configuration
-public class BlogConfig extends WebMvcConfigurationSupport {
+public class BlogConfig {
 
-    @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("welcome");
-        registry.addViewController("/login").setViewName("login");
+    private final AccountService accountService;
+
+    @Autowired
+    public BlogConfig(AccountService accountService) {
+        this.accountService = accountService;
     }
+
 
     @Bean
     public CommandLineRunner commandLineRunner(){
         return args -> {
-            Path path = Paths.get("src/main/resources/static/userdata");
-            Files.deleteIfExists(path);
+            Account defaultAccount = new Account(
+                    0,
+                    "abc",
+                    "abc",
+                    "Ted",
+                    "Ted",
+                    "Baku",
+                    "Azerbaijan",
+                    "man",
+                    LocalDate.of(1990,2,20),
+                    "profile@gmail.com",
+                    "profile.jpg");
+
+            accountService.saveAccount(defaultAccount, null);
 
         };
+
+
     }
 
 }

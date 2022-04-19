@@ -1,0 +1,20 @@
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: 'create-drop'
+    show-sql: 'true'
+  datasource:
+    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/blog_base'
+    username: 'root'
+    password: '11111'
+    driver-class-name: 'com.mysql.cj.jdbc.Driver'
+  servlet:
+    multipart:
+      max-file-size: '10MB'
+      max-request-size: '10MB'
+  security:
+    user:
+      name: "tom"
+      password: "tom"
+

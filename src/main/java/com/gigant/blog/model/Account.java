@@ -1,15 +1,21 @@
 package com.gigant.blog.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
-public class UserProfile {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +27,8 @@ public class UserProfile {
     private String city;
     private String country;
     private String sex;
+    private LocalDate birthday;
     private String email;
     private String profileImageLink;
-
 
 }

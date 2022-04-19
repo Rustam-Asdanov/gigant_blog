@@ -1,7 +1,7 @@
 package com.gigant.blog.controller;
 
-import com.gigant.blog.model.UserProfile;
-import com.gigant.blog.service.UserProfileService;
+import com.gigant.blog.model.Account;
+import com.gigant.blog.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -9,26 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.Authenticator;
+
 @Controller
 @RequestMapping("/blog")
 public class MainController {
 
-    private final UserProfileService userProfileService;
+    private final AccountService accountService;
 
     @Autowired
-    public MainController(UserProfileService userProfileService) {
-        this.userProfileService = userProfileService;
+    public MainController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @GetMapping
     public String getMainPage(){
         return "main-page";
-    }
-
-    @GetMapping("/signup")
-    public String getSignUpPage(Model model){
-        model.addAttribute("user", new UserProfile());
-        return "signup";
     }
 
     @PostMapping(
@@ -37,11 +33,18 @@ public class MainController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public String saveUser(
-            @ModelAttribute("user") UserProfile userProfile,
+            @ModelAttribute("user") Account account,
             @RequestParam("profileImage")MultipartFile multipartFile
             ){
-        userProfileService.saveUserProfile(userProfile, multipartFile);
+        accountService.saveAccount(account, multipartFile);
 
-        return "redirect:/login";
+        return "redirect:/blog";
+    }
+
+    @GetMapping("/userpage")
+    public String getUserPage(Model model, Authenticator authenticator){
+//        String activeUser = authenticator.
+//        model.addAttribute("account", );
+        return "userpage";
     }
 }
