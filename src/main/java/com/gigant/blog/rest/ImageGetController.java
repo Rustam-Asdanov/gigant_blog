@@ -1,19 +1,24 @@
 package com.gigant.blog.rest;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
 @Slf4j
-@RestController("/api")
+@RestController
+@RequestMapping("/api")
 public class ImageGetController {
 
+    @GetMapping("/sik")
+    public String hello(){
+        return "zart";
+    }
+
     @GetMapping("/{image-name}")
+    @ResponseBody
     public byte[] getLocalImage(
             @PathVariable("image-name") String imageName
     ){
@@ -35,12 +40,14 @@ public class ImageGetController {
     }
 
     @GetMapping("/getAccountImage/{userId}/download/{imageName}")
+    @ResponseBody
     public byte[] getAccountImage(
             @PathVariable("userId") long id,
             @PathVariable("imageName") String imageName
     ){
+        log.info("id {} and imageName {}", id, imageName);
         String path = String.format(
-                "src/main/resources/static/userdata/user_%s/%s",id,imageName
+                "src/main/resources/static/userdata/user_%s/%s",(id-1),imageName
         );
 
         File file = new File(path);

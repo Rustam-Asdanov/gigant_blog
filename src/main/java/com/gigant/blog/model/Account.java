@@ -3,6 +3,8 @@ package com.gigant.blog.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.Date;
 
+@Slf4j
 @Entity
 @Data
 @AllArgsConstructor
@@ -27,7 +30,9 @@ public class Account {
     private String city;
     private String country;
     private String sex;
-    private LocalDate birthday;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
     private String email;
     private String profileImageLink;
 

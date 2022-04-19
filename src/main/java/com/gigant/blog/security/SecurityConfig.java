@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -35,8 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-//                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/","/blog","/blog/*","/image/**","/script/**","/css/*").permitAll()
+                .antMatchers("/*","/blog","/blog/*","/image/**","/script/**","/css/*","/api/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

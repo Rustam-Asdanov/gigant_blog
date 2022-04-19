@@ -4,6 +4,8 @@ import com.gigant.blog.model.Account;
 import com.gigant.blog.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +44,10 @@ public class MainController {
     }
 
     @GetMapping("/userpage")
-    public String getUserPage(Model model, Authenticator authenticator){
-//        String activeUser = authenticator.
-//        model.addAttribute("account", );
+    public String getUserPage(Model model, Authentication authentication){
+        String username = authentication.getName();
+        Account theAccount = accountService.getAccountByUsername(username);
+        model.addAttribute("account", theAccount);
         return "userpage";
     }
 }

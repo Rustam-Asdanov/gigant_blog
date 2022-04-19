@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         UserDetailsImpl userDetails = new UserDetailsImpl(
                 theAccount.getUsername(),
-                passwordEncoder.encode(theAccount.getPassword()),
+                theAccount.getPassword(),
                 GUEST.getSimpleGrantedAuthorities(),
                 true,
                 true,
