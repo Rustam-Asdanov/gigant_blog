@@ -1,6 +1,8 @@
 package com.gigant.blog.service;
 
+import com.gigant.blog.model.Account;
 import com.gigant.blog.model.UserPost;
+import com.gigant.blog.model.UserPostImage;
 import com.gigant.blog.repository.UserPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -23,12 +27,25 @@ public class UserPostServiceImpl implements UserPostService {
     }
 
     @Override
-    public void addNewPost(UserPost userPost, MultipartFile[] multipartFile) {
-        saveImages(multipartFile, userPost.getTheAccount().getId());
+    public void addNewPost(UserPost userPost, Account currentAccount, MultipartFile[] multipartFile) {
+        List<String> imageName = saveImages(multipartFile, userPost.getTheAccount().getId());
+        imageName.forEach( (image)->{
+            userPost.addUserPostImage(new UserPostImage(image));
+        });
 
+        userPost.setTheAccount(currentAccount);
+        userPostRepository.save(userPost);
     }
 
-    private void saveImages(MultipartFile[] multipartFile, long id) {
+    /**
+     * get multipart files and user post id for saving images in
+     * folder and return all images name in a list
+     * @param multipartFile
+     * @param id
+     * @return
+     */
+    private List<String> saveImages(MultipartFile[] multipartFile, long id) {
+        List<String> imageNames = new ArrayList<>();
         String pathName = String.format("src/main/resources/static/userdata/user_%s/post");
         File file = new File(pathName);
         file.mkdir();
@@ -38,9 +55,11 @@ public class UserPostServiceImpl implements UserPostService {
             Path path = Paths.get(file.getPath(), "/" + fileName);
             try {
                 mfile.transferTo(path);
+                imageNames.add(fileName);
             } catch (IOException e) {
                 throw new IllegalStateException("File "+mfile.getOriginalFilename()+"has some issues",e);
             }
         }
+        return imageNames;
     }
 }

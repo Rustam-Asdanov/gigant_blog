@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/userpage")
+@SessionAttributes("user")
 public class AccountController {
 
     private String folder = "userpage/";
@@ -47,9 +48,10 @@ public class AccountController {
     )
     public String saveNewPost(
             @ModelAttribute("userPost") UserPost userPost,
+            @SessionAttribute("user") Account currentAccount,
             @RequestParam("post-images") MultipartFile[] multipartFile
     ) {
-        userPostService.addNewPost(userPost, multipartFile);
+        userPostService.addNewPost(userPost, currentAccount, multipartFile);
         return "redirect:/userpage";
     }
 }

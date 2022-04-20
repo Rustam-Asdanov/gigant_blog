@@ -21,7 +21,7 @@ public class UserPost {
     private String description;
 
     @OneToMany(mappedBy = "userPost")
-    private List<UserPostImage> images = new ArrayList<>();
+    private List<UserPostImage> images;
 
     @ManyToOne(cascade = {CascadeType.DETACH,
                         CascadeType.MERGE,
@@ -29,4 +29,14 @@ public class UserPost {
                         CascadeType.REFRESH})
     @JoinColumn(name = "accountId")
     private Account theAccount;
+
+    public void addUserPostImage(UserPostImage userPostImage){
+        if(images==null){
+            images = new ArrayList<>();
+        }
+
+        userPostImage.setUserPost(this);
+        images.add(userPostImage);
+    }
+
 }

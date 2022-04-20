@@ -1,12 +1,14 @@
 package com.gigant.blog.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user_images")
 @Data
+@NoArgsConstructor
 public class UserPostImage {
 
     @Id
@@ -20,4 +22,8 @@ public class UserPostImage {
                         CascadeType.REFRESH})
     @JoinColumn(name = "userPostId")
     private UserPost userPost;
+
+    public UserPostImage(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }

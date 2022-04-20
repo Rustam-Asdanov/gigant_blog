@@ -2,14 +2,20 @@ package com.gigant.blog.controller;
 
 import com.gigant.blog.model.Account;
 import com.gigant.blog.service.AccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+
+@Slf4j
 @Controller
 @RequestMapping("/blog")
+@SessionAttributes("user")
 public class MainController {
 
     private String folder = "";
@@ -21,9 +27,13 @@ public class MainController {
     }
 
     @GetMapping
-    public String getMainPage() {
+    public String getMainPage(Authentication authentication, HttpSession httpSession) {
+        if (authentication != null) {
+            httpSession.setAttribute("user", accountService.getAccountByUsername(authentication.getName()));
+        }
         return folder + "main-page";
     }
+
 
     @PostMapping(
             path = "/save",
@@ -35,9 +45,7 @@ public class MainController {
             @RequestParam("profileImage") MultipartFile multipartFile
     ) {
         accountService.saveAccount(account, multipartFile);
-
         return "redirect:/blog";
     }
-
 
 }

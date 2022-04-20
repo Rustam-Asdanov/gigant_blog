@@ -51,12 +51,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMeParameter("remember-me")
                 .and()
                 .logout()
-                .logoutUrl("/logout")
+                .logoutUrl("/perform-logout")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout","GET"))
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID","remember-me")
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/blog");
     }
 
 

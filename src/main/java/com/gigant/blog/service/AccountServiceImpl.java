@@ -28,7 +28,6 @@ public class AccountServiceImpl implements AccountService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Override
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
@@ -52,7 +51,7 @@ public class AccountServiceImpl implements AccountService {
     private String savingImage(Account account, MultipartFile multipartFile) {
         String fileName = String.format("%s-%s", multipartFile.getOriginalFilename(), UUID.randomUUID());
 
-        File file = new File("src/main/resources/static/userdata/user_"+ account.getId());
+        File file = new File("src/main/resources/static/userdata/user_"+ (account.getId()+1));
         if (!file.exists()){
             file.mkdir();
         }

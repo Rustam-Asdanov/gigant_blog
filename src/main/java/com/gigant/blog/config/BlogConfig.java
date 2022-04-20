@@ -33,20 +33,20 @@ public class BlogConfig {
 
             file.mkdir();
 
-            Account defaultAccount = new Account(
-                    0,
-                    "abc",
-                    "abc",
-                    "Ted",
-                    "Ted",
-                    "Baku",
-                    "Azerbaijan",
-                    "man",
-                    null,
-                    "profile@gmail.com",
-                    "profile.jpg",null);
-
-            accountService.saveAccount(defaultAccount, null);
+//            Account defaultAccount = new Account(
+//                    0,
+//                    "abc",
+//                    "abc",
+//                    "Ted",
+//                    "Ted",
+//                    "Baku",
+//                    "Azerbaijan",
+//                    "man",
+//                    null,
+//                    "profile@gmail.com",
+//                    "profile.jpg",null);
+//
+//            accountService.saveAccount(defaultAccount, null);
 
         };
 

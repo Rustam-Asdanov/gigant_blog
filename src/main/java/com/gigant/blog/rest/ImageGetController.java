@@ -1,5 +1,6 @@
 package com.gigant.blog.rest;
 
+import com.gigant.blog.model.Account;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.nio.file.Files;
 @Slf4j
 @RestController
 @RequestMapping("/api")
+@SessionAttributes("user")
 public class ImageGetController {
 
     @GetMapping("/{image-name}")
@@ -37,12 +39,12 @@ public class ImageGetController {
     @GetMapping("/getAccountImage/{userId}/download/{imageName}")
     @ResponseBody
     public byte[] getAccountImage(
-            @PathVariable("userId") long id,
+            @SessionAttribute("user") Account currentAccount,
             @PathVariable("imageName") String imageName
     ){
-        log.info("id {} and imageName {}", id, imageName);
+        log.info("id {} and imageName {}", currentAccount.getId(), imageName);
         String path = String.format(
-                "src/main/resources/static/userdata/user_%s/%s",(id-1),imageName
+                "src/main/resources/static/userdata/user_%s/%s",currentAccount.getId(),imageName
         );
 
         if(imageName.equals("profile.jpg")){
