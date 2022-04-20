@@ -12,11 +12,6 @@ import java.nio.file.Files;
 @RequestMapping("/api")
 public class ImageGetController {
 
-    @GetMapping("/sik")
-    public String hello(){
-        return "zart";
-    }
-
     @GetMapping("/{image-name}")
     @ResponseBody
     public byte[] getLocalImage(
