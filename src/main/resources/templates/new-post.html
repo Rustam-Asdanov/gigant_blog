@@ -14,7 +14,8 @@
 </head>
 <body>
     <section class="container">
-        <form class="row g-3 needs-validation" novalidate>
+        <form th:method="POST" th:action="@{/userpage/savePost}" enctype="multipart/form-data"
+                class="row g-3 needs-validation" novalidate>
             <div class="col-md-4">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" value="Mark" required>
@@ -44,16 +45,22 @@
 
             <div class="mb-3">
                 <label for="validationTextarea" class="form-label">Textarea</label>
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                <textarea class="form-control" id="validationTextarea" placeholder="Required example textarea" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
                 <div class="invalid-feedback">
                     Please enter a message in the textarea.
                 </div>
             </div>
 
-            <div class="mb-3">
-                <input type="file" class="form-control" aria-label="file example" required>
+
+            <div class="mb-3 image-upload">
+                <input type="file" name="post-images" class="form-control" aria-label="file example" required>
                 <div class="invalid-feedback">Example invalid form file feedback</div>
             </div>
+            
+            <input type="button" value="One more image" class="btn btn-success" onclick="addNewPhotoField()"/>
 
             <div class="col-12">
                 <div class="form-check">
@@ -73,6 +80,7 @@
     </section>
 
 <script>
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   'use strict'
@@ -93,6 +101,16 @@
       }, false)
     })
 })()
+
+
+
+function addNewPhotoField(){
+    let image_container = document.getElementsByClassName("image-upload")[0];
+    let var_one = image_container.children[0].cloneNode(true);
+    let var_two = image_container.children[1].cloneNode(true);
+    image_container.appendChild(var_one)
+    image_container.appendChild(var_two)
+}
 </script>
 </body>
 </html>

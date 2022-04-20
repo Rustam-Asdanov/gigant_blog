@@ -43,11 +43,5 @@ public class MainController {
         return "redirect:/blog";
     }
 
-    @GetMapping("/userpage")
-    public String getUserPage(Model model, Authentication authentication){
-        String username = authentication.getName();
-        Account theAccount = accountService.getAccountByUsername(username);
-        model.addAttribute("account", theAccount);
-        return "userpage";
-    }
+
 }
