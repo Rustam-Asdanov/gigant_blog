@@ -23,4 +23,9 @@ public class DefaultController {
         model.addAttribute("user", new Account());
         return "signup";
     }
+
+    @GetMapping("/building")
+    public String getBuildingPage(){
+        return "building";
+    }
 }

@@ -45,6 +45,10 @@ public class ImageGetController {
                 "src/main/resources/static/userdata/user_%s/%s",(id-1),imageName
         );
 
+        if(imageName.equals("profile.jpg")){
+            path = "src/main/resources/static/image/profile.jpg";
+        }
+
         File file = new File(path);
         byte[] imageBytes;
         try {
