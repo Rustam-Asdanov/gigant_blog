@@ -15,6 +15,7 @@ import java.util.Arrays;
 @RequestMapping("/userpage")
 public class AccountController {
 
+    private String folder = "userpage/";
     private final AccountService accountService;
 
     @Autowired
@@ -23,23 +24,23 @@ public class AccountController {
     }
 
     @GetMapping
-    public String getUserPage(Model model, Authentication authentication){
+    public String getUserPage(Model model, Authentication authentication) {
         String username = authentication.getName();
         Account theAccount = accountService.getAccountByUsername(username);
         model.addAttribute("account", theAccount);
-        return "userpage";
+        return folder + "userpage";
     }
 
     @GetMapping("/newPost")
-    public String getNewPostPage(Model model){
+    public String getNewPostPage(Model model) {
 
-        return "new-post";
+        return folder + "new-post";
     }
 
     @PostMapping(
             path = "/savePost"
     )
-    public String saveNewPost(@RequestParam("post-images")MultipartFile[] multipartFile){
+    public String saveNewPost(@RequestParam("post-images") MultipartFile[] multipartFile) {
         System.out.println(Arrays.toString(multipartFile));
         return "redirect:/userpage";
     }

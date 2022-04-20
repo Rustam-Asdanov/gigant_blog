@@ -44,7 +44,7 @@ public class BlogConfig {
                     "man",
                     null,
                     "profile@gmail.com",
-                    "profile.jpg");
+                    "profile.jpg",null);
 
             accountService.saveAccount(defaultAccount, null);
 

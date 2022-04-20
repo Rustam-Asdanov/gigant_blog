@@ -4,19 +4,15 @@ import com.gigant.blog.model.Account;
 import com.gigant.blog.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.net.Authenticator;
 
 @Controller
 @RequestMapping("/blog")
 public class MainController {
 
+    private String folder = "";
     private final AccountService accountService;
 
     @Autowired
@@ -25,8 +21,8 @@ public class MainController {
     }
 
     @GetMapping
-    public String getMainPage(){
-        return "main-page";
+    public String getMainPage() {
+        return folder + "main-page";
     }
 
     @PostMapping(
@@ -36,8 +32,8 @@ public class MainController {
     )
     public String saveUser(
             @ModelAttribute("user") Account account,
-            @RequestParam("profileImage")MultipartFile multipartFile
-            ){
+            @RequestParam("profileImage") MultipartFile multipartFile
+    ) {
         accountService.saveAccount(account, multipartFile);
 
         return "redirect:/blog";
