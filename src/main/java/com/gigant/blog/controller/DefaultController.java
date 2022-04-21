@@ -3,6 +3,7 @@ package com.gigant.blog.controller;
 import com.gigant.blog.model.Account;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -19,11 +20,6 @@ public class DefaultController {
 
     private String folder = "help/";
 
-    @ModelAttribute(name = "user")
-    public Account getAccount(){
-        return new Account();
-    }
-
     @GetMapping
     public String getPage() {
         return folder + "welcome";
@@ -35,7 +31,8 @@ public class DefaultController {
     }
 
     @GetMapping("/signup")
-    public String getSignUpPage() {
+    public String getSignUpPage(Model model) {
+        model.addAttribute("user",new Account());
         return folder + "signup";
     }
 
@@ -49,7 +46,7 @@ public class DefaultController {
             @SessionAttribute("user") Account account,
             SessionStatus sessionStatus
     ){
-        log.info("current user {}",account);
+        log.info("current user {}",account.getUsername());
         sessionStatus.setComplete();
         return "redirect:/logout";
     }

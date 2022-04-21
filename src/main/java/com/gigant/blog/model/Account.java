@@ -38,4 +38,5 @@ public class Account {
     @OneToMany(mappedBy = "theAccount")
     private List<UserPost> userPosts = new ArrayList<>();
 
+
 }
