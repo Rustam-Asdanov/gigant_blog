@@ -32,7 +32,7 @@ public class DefaultController {
 
     @GetMapping("/signup")
     public String getSignUpPage(Model model) {
-        model.addAttribute("user",new Account());
+        model.addAttribute("user", new Account());
         return folder + "signup";
     }
 
@@ -45,9 +45,9 @@ public class DefaultController {
     public String logout(
             @SessionAttribute("user") Account account,
             SessionStatus sessionStatus
-    ){
-        log.info("current user {}",account.getUsername());
-        sessionStatus.setComplete();
+    ) {
+        log.info("current user {} session status {}", account.getUsername(), sessionStatus.isComplete());
+
         return "redirect:/logout";
     }
 }

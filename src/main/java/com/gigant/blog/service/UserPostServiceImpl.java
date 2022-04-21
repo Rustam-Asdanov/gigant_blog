@@ -26,9 +26,16 @@ public class UserPostServiceImpl implements UserPostService {
         this.userPostRepository = userPostRepository;
     }
 
+    /**
+     * there we send our userPost data, current account and multipart file for saving
+     *
+     * @param userPost
+     * @param currentAccount
+     * @param multipartFile
+     */
     @Override
     public void addNewPost(UserPost userPost, Account currentAccount, MultipartFile[] multipartFile) {
-        List<String> imageName = saveImages(multipartFile, userPost.getTheAccount().getId());
+        List<String> imageName = saveImages(multipartFile, currentAccount.getId());
         imageName.forEach( (image)->{
             userPost.addUserPostImage(new UserPostImage(image));
         });
@@ -46,7 +53,7 @@ public class UserPostServiceImpl implements UserPostService {
      */
     private List<String> saveImages(MultipartFile[] multipartFile, long id) {
         List<String> imageNames = new ArrayList<>();
-        String pathName = String.format("src/main/resources/static/userdata/user_%s/post");
+        String pathName = String.format("src/main/resources/static/userdata/user_%s/post",id);
         File file = new File(pathName);
         file.mkdir();
 

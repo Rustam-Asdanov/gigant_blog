@@ -16,8 +16,7 @@ public class UserPostImage {
     private long id;
     private String imageURL;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,
-                        CascadeType.MERGE,
+    @ManyToOne(cascade = {CascadeType.MERGE,
                         CascadeType.PERSIST,
                         CascadeType.REFRESH})
     @JoinColumn(name = "userPostId")

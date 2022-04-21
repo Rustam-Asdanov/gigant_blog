@@ -25,7 +25,6 @@ public class UserPost {
 
     @ManyToOne(cascade = {CascadeType.DETACH,
                         CascadeType.MERGE,
-                        CascadeType.PERSIST,
                         CascadeType.REFRESH})
     @JoinColumn(name = "accountId")
     private Account theAccount;

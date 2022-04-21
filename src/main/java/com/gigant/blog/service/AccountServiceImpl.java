@@ -37,24 +37,35 @@ public class AccountServiceImpl implements AccountService {
     public void saveAccount(Account account, MultipartFile multipartFile) {
 
         String fileName;
-        if (multipartFile != null){
-            fileName = savingImage(account, multipartFile);
-        } else {
-            fileName = "profile.jpg";
-        }
+        fileName = savingImage(account, multipartFile);
 
         account.setProfileImageLink(fileName);
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         accountRepository.save(account);
     }
 
+    /**
+     * in this method we get current account data and its profile photo
+     * we crate new folder for user, save its profile image and return new
+     * generated name. But if our user don't upload image, we just create
+     * folder for him and return default image name
+     * @param account
+     * @param multipartFile
+     * @return
+     */
     private String savingImage(Account account, MultipartFile multipartFile) {
-        String fileName = String.format("%s-%s", multipartFile.getOriginalFilename(), UUID.randomUUID());
 
-        File file = new File("src/main/resources/static/userdata/user_"+ (account.getId()+1));
+        File file = new File("src/main/resources/static/userdata/user_"+ (accountRepository.findAll().size()+1));
         if (!file.exists()){
             file.mkdir();
         }
+
+        String fileName;
+        if(multipartFile == null) {
+            return "profile.jpg";
+        }
+
+        fileName = String.format("%s-%s", multipartFile.getOriginalFilename(), UUID.randomUUID());
 
         Path path = Paths.get(file.getPath(),"/"+fileName);
 

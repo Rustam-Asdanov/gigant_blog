@@ -36,7 +36,6 @@ public class Account {
     private String profileImageLink;
 
     @OneToMany(mappedBy = "theAccount")
-    private List<UserPost> userPosts = new ArrayList<>();
-
+    private List<UserPost> userPostList = new ArrayList<>();
 
 }
