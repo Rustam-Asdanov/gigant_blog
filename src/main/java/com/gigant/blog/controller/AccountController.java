@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/userpage")
 @SessionAttributes("user")
@@ -28,10 +31,11 @@ public class AccountController {
     }
 
     @GetMapping
-    public String getUserPage(Model model, Authentication authentication) {
-        String username = authentication.getName();
-        Account theAccount = accountService.getAccountByUsername(username);
-        model.addAttribute("account", theAccount);
+    public String getUserPage(@SessionAttribute("user") Account currentAccount, Model model) {
+        model.addAllAttributes(Map.of(
+                "currentAccount",currentAccount,
+                "postList",userPostService.getPostListByAccountId(currentAccount.getId())
+        ));
         return folder + "userpage";
     }
 

@@ -52,8 +52,8 @@
   </style>
 </head>
 
-<body th:object="${account}">
-  <header class="container p-0 pt-3">
+<body>
+  <header th:object="${currentAccount}" class="container p-0 pt-3">
     <img
             th:src="@{/api/getAccountImage/{userId}/download/{imageName}(userId=*{id},imageName=*{profileImageLink})}"
             alt="profile picture">
@@ -89,58 +89,71 @@
     </nav>
   </header>
 
-  <section class="container bg-secondary p-3">
+  <section class="container bg-secondary p-3" th:each="post : ${postList}">
+
+<!--    <div class="mycard row container bg-light position-relative mx-auto p-3" style="max-height: 400px;">-->
+<!--      <div id="carouselExampleControls" class="carousel slide col-4 rounded" data-bs-ride="carousel">-->
+<!--        <div class="carousel-inner">-->
+<!--          <div class="carousel-item active">-->
+<!--            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"-->
+<!--              class="d-block w-100 rounded" alt="...">-->
+<!--          </div>-->
+<!--          <div class="carousel-item">-->
+<!--            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"-->
+<!--              class="d-block w-100 rounded" alt="...">-->
+<!--          </div>-->
+<!--          <div class="carousel-item">-->
+<!--            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"-->
+<!--              class="d-block w-100 rounded" alt="...">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"-->
+<!--          data-bs-slide="prev">-->
+<!--          <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--          <span class="visually-hidden">Previous</span>-->
+<!--        </button>-->
+<!--        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"-->
+<!--          data-bs-slide="next">-->
+<!--          <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--          <span class="visually-hidden">Next</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="col-8">-->
+<!--        <h2 class="text-center">Title</h2>-->
+<!--        <p class="text-justify">-->
+<!--          ibero molestiae, repellat eius iste ullam deleniti distinctio laudantium explicabo quod. Commodi, corrupti.-->
+<!--        </p>-->
+<!--        <a href="" class="btn btn-danger float-end">Delete</a>-->
+<!--        <a href="" class="btn btn-warning float-end me-2">Read more</a>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="mycard row container bg-light position-relative mx-auto p-3" style="max-height: 400px;">
       <div id="carouselExampleControls" class="carousel slide col-4 rounded" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
-              class="d-block w-100 rounded" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
-              class="d-block w-100 rounded" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"
-              class="d-block w-100 rounded" alt="...">
+        <div th:each="image : ${post.images}" class="carousel-inner">
+          <div class="carousel-item" th:classappend="(${image.id}==1) ? active">
+            <img th:src="@{/api/getAccountImage/carousel/{imageName}(imageName=${image.imageURL})}"
+                 class="d-block w-100 rounded" th:alt="${image.id}">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev">
+                data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-          data-bs-slide="next">
+                data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
       <div class="col-8">
-        <h2 class="text-center">Title</h2>
-        <p class="text-justify">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, exercitationem saepe est, incidunt ab,
-          repudiandae et eligendi quo debitis numquam consequuntur commodi tempora quis repellendus aspernatur? Dolores
-          cum in ullam, deleniti commodi alias aspernatur magnam quos similique totam voluptatum rem atque officia
-          delectus ad sit ex minus voluptatibus molestiae animi nam repellat. Omnis illo blanditiis dolores. Ducimus ex
-          facere culpa obcaecati id illo amet modi dolore, cumque quam fugit mollitia aspernatur possimus ratione ea
-          doloremque aperiam! Ducimus fugit quis quidem ipsum eum cum expedita, quisquam, similique voluptatum ad
-          recusandae rerum suscipit ab iusto at mollitia praesentium, perspiciatis voluptatem. Tempore atque itaque quod
-          rem beatae sunt veritatis. Quam exercitationem aperiam harum autem aliquam sunt voluptatum obcaecati beatae
-          inventore quidem distinctio eaque neque in asperiores ut, reiciendis iusto modi suscipit. Porro fugit aut
-          adipisci aspernatur reprehenderit nobis, perspiciatis inventore totam facere possimus officiis iure explicabo
-          at voluptate quos mollitia sapiente laboriosam maxime omnis atque cum, aliquid, quo numquam. Exercitationem
-          nihil, nesciunt ad reprehenderit officiis minus odio excepturi magnam consequatur quaerat eum id enim harum
-          dolorum mollitia ea aliquam! Doloremque vero, modi esse repudiandae porro autem animi ipsam repellendus. Quasi
-          libero molestiae, repellat eius iste ullam deleniti distinctio laudantium explicabo quod. Commodi, corrupti.
-        </p>
+        <h2 th:text="${post.title}" class="text-center">Title</h2>
+        <p th:text="${post.description}" class="text-justify">Description</p>
         <a href="" class="btn btn-danger float-end">Delete</a>
         <a href="" class="btn btn-warning float-end me-2">Read more</a>
       </div>
     </div>
-
   </section>
 
 </body>

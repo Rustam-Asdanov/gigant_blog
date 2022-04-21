@@ -61,4 +61,24 @@ public class ImageGetController {
 
         return imageBytes;
     }
+
+    @GetMapping("/getAccountImage/carousel/{imageName}")
+    public byte[] getImageForCarousel(
+            @PathVariable("imageName") String imageName,
+            @SessionAttribute("user") Account account
+    ){
+        log.info("received image name is {}",imageName);
+        String path = String.format("src/main/resources/static/userdata/user_%s/post/%s",
+                account.getId(),imageName);
+
+        File file = new File(path);
+        byte[] imageBytes;
+        try {
+            imageBytes = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            throw new IllegalStateException("Photo not found",e);
+        }
+
+        return imageBytes;
+    }
 }

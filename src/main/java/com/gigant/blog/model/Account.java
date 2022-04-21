@@ -35,7 +35,7 @@ public class Account {
     private String email;
     private String profileImageLink;
 
-    @OneToMany(mappedBy = "theAccount")
+    @OneToMany(mappedBy = "account")
     private List<UserPost> userPostList = new ArrayList<>();
 
 }

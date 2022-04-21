@@ -4,6 +4,7 @@ import com.gigant.blog.model.Account;
 import com.gigant.blog.model.UserPost;
 import com.gigant.blog.model.UserPostImage;
 import com.gigant.blog.repository.UserPostRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class UserPostServiceImpl implements UserPostService {
 
@@ -39,9 +41,20 @@ public class UserPostServiceImpl implements UserPostService {
         imageName.forEach( (image)->{
             userPost.addUserPostImage(new UserPostImage(image));
         });
-
-        userPost.setTheAccount(currentAccount);
+        //log.info("userPostImage info {}",userPost.getImages().size());
+        userPost.setAccount(currentAccount);
         userPostRepository.save(userPost);
+    }
+
+    @Override
+    public List<UserPost> getPostListByAccountId(long id) {
+        List<UserPost> userPosts = userPostRepository.getAllUserPostByAccountId(id);
+
+        if (userPosts == null){
+            userPosts = new ArrayList<>();
+        }
+
+        return userPosts;
     }
 
     /**

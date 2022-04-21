@@ -20,14 +20,14 @@ public class UserPost {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(mappedBy = "userPost")
+    @OneToMany(mappedBy = "userPost", cascade = CascadeType.ALL)
     private List<UserPostImage> images;
 
     @ManyToOne(cascade = {CascadeType.DETACH,
                         CascadeType.MERGE,
                         CascadeType.REFRESH})
     @JoinColumn(name = "accountId")
-    private Account theAccount;
+    private Account account;
 
     public void addUserPostImage(UserPostImage userPostImage){
         if(images==null){
