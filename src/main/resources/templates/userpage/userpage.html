@@ -7,8 +7,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Please sign in</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
@@ -43,6 +45,11 @@
       text-align: justify;
     }
 
+    #carouselExampleInterval{
+          height:100%;
+        }
+
+
     @media only screen and (max-width: 600px) {
       .mycard p {
         height: 100px;
@@ -54,8 +61,7 @@
 
 <body>
   <header th:object="${currentAccount}" class="container p-0 pt-3">
-    <img
-            th:src="@{/api/getAccountImage/{userId}/download/{imageName}(userId=*{id},imageName=*{profileImageLink})}"
+    <img th:src="@{/api/getAccountImage/{userId}/download/{imageName}(userId=*{id},imageName=*{profileImageLink})}"
             alt="profile picture">
     <h3 class="text-center m-2" th:text="*{username}">username</h3>
     <hr />
@@ -91,62 +97,33 @@
 
   <section class="container bg-secondary p-3" th:each="post : ${postList}">
 
-<!--    <div class="mycard row container bg-light position-relative mx-auto p-3" style="max-height: 400px;">-->
-<!--      <div id="carouselExampleControls" class="carousel slide col-4 rounded" data-bs-ride="carousel">-->
-<!--        <div class="carousel-inner">-->
-<!--          <div class="carousel-item active">-->
-<!--            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"-->
-<!--              class="d-block w-100 rounded" alt="...">-->
-<!--          </div>-->
-<!--          <div class="carousel-item">-->
-<!--            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"-->
-<!--              class="d-block w-100 rounded" alt="...">-->
-<!--          </div>-->
-<!--          <div class="carousel-item">-->
-<!--            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"-->
-<!--              class="d-block w-100 rounded" alt="...">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"-->
-<!--          data-bs-slide="prev">-->
-<!--          <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--          <span class="visually-hidden">Previous</span>-->
-<!--        </button>-->
-<!--        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"-->
-<!--          data-bs-slide="next">-->
-<!--          <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--          <span class="visually-hidden">Next</span>-->
-<!--        </button>-->
-<!--      </div>-->
-<!--      <div class="col-8">-->
-<!--        <h2 class="text-center">Title</h2>-->
-<!--        <p class="text-justify">-->
-<!--          ibero molestiae, repellat eius iste ullam deleniti distinctio laudantium explicabo quod. Commodi, corrupti.-->
-<!--        </p>-->
-<!--        <a href="" class="btn btn-danger float-end">Delete</a>-->
-<!--        <a href="" class="btn btn-warning float-end me-2">Read more</a>-->
-<!--      </div>-->
-<!--    </div>-->
 
     <div class="mycard row container bg-light position-relative mx-auto p-3" style="max-height: 400px;">
-      <div id="carouselExampleControls" class="carousel slide col-4 rounded" data-bs-ride="carousel">
-        <div th:each="image : ${post.images}" class="carousel-inner">
-          <div class="carousel-item" th:classappend="(${image.id}==1) ? active">
-            <img th:src="@{/api/getAccountImage/carousel/{imageName}(imageName=${image.imageURL})}"
-                 class="d-block w-100 rounded" th:alt="${image.id}">
+
+      <div id="carouselExampleInterval" class="carousel slide rounded col-3" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active" data-bs-interval="1">
+            <img th:src="@{image/wall.jpg}" class="d-block w-100" style="height:300px" alt="default">
           </div>
+
+          <div class="carousel-item" data-bs-interval="2000" th:each="image : ${post.images}">
+            <img th:src="@{/api/getAccountImage/carousel/{imageName}(imageName=${image.imageURL})}"
+                     class="d-block w-100" style="height:300px" th:alt="${image.id}">
+          </div>
+
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+
+
       <div class="col-8">
         <h2 th:text="${post.title}" class="text-center">Title</h2>
         <p th:text="${post.description}" class="text-justify">Description</p>

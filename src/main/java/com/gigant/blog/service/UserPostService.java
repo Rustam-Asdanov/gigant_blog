@@ -10,4 +10,6 @@ public interface UserPostService {
     void addNewPost(UserPost userPost, Account currentAccount, MultipartFile[] multipartFile);
 
     List<UserPost> getPostListByAccountId(long id);
+
+    List<UserPost> getAllPosts();
 }

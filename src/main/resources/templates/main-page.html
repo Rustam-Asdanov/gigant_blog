@@ -38,7 +38,7 @@
                         <a class="nav-link active" aria-current="page" href="/login">Sign In</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link active bg-danger" aria-current="page" href="/perform-logout">Logout</a>
+                        <a class="nav-link active bg-danger rounded" aria-current="page" href="/perform-logout">Logout</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -119,14 +119,14 @@
         }
     </style>
 
-    <div class="container col-6 col-md-4 g-3 my-card">
+    <div class="container col-6 col-md-4 g-3 my-card" th:each="card : ${cardList}">
         <div class="container__info m-2">
             <span><i class="fas fa-eye"></i>2350</span>
             <span><i class="fas fa-comment-alt"></i>624</span>
             <span><i class="fas fa-download"></i>1470</span>
         </div>
         <div class="container__profile">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+            <img th:src="@{/api/postImage/{accountId}/get/{imageName}(accountId=${card.account.id},imageName=${card.profileImageLink})}"
                 alt="people" />
             <div class="container__profile__text">
                 <h2>White Mountains</h2>

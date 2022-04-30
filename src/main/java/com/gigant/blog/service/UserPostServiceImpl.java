@@ -57,6 +57,11 @@ public class UserPostServiceImpl implements UserPostService {
         return userPosts;
     }
 
+    @Override
+    public List<UserPost> getAllPosts() {
+        return userPostRepository.findAll();
+    }
+
     /**
      * get multipart files and user post id for saving images in
      * folder and return all images name in a list

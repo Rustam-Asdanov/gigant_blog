@@ -18,19 +18,19 @@ public class ImageGetController {
     @ResponseBody
     public byte[] getLocalImage(
             @PathVariable("image-name") String imageName
-    ){
+    ) {
         log.info("Image name is {}", imageName);
-        if (imageName.isEmpty()){
+        if (imageName.isEmpty()) {
             imageName = "not-found.jpg";
         }
 
-        File file = new File("src/main/resources/static/image/"+imageName);
+        File file = new File("src/main/resources/static/image/" + imageName);
         byte[] imageBytes;
 
         try {
             imageBytes = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
-            throw new IllegalStateException("Some issues during the reading file",e);
+            throw new IllegalStateException("Some issues during the reading file", e);
         }
 
         return imageBytes;
@@ -41,13 +41,13 @@ public class ImageGetController {
     public byte[] getAccountImage(
             @SessionAttribute("user") Account currentAccount,
             @PathVariable("imageName") String imageName
-    ){
+    ) {
         log.info("id {} and imageName {}", currentAccount.getId(), imageName);
         String path = String.format(
-                "src/main/resources/static/userdata/user_%s/%s",currentAccount.getId(),imageName
+                "src/main/resources/static/userdata/user_%s/%s", currentAccount.getId(), imageName
         );
 
-        if(imageName.equals("profile.jpg")){
+        if (imageName.equals("profile.jpg")) {
             path = "src/main/resources/static/image/profile.jpg";
         }
 
@@ -56,7 +56,7 @@ public class ImageGetController {
         try {
             imageBytes = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
-            throw new IllegalStateException("Photo not found",e);
+            throw new IllegalStateException("Photo not found", e);
         }
 
         return imageBytes;
@@ -66,17 +66,37 @@ public class ImageGetController {
     public byte[] getImageForCarousel(
             @PathVariable("imageName") String imageName,
             @SessionAttribute("user") Account account
-    ){
-        log.info("received image name is {}",imageName);
+    ) {
+        log.info("received image name is {}", imageName);
         String path = String.format("src/main/resources/static/userdata/user_%s/post/%s",
-                account.getId(),imageName);
+                account.getId(), imageName);
 
         File file = new File(path);
         byte[] imageBytes;
         try {
             imageBytes = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
-            throw new IllegalStateException("Photo not found",e);
+            throw new IllegalStateException("Photo not found", e);
+        }
+
+        return imageBytes;
+    }
+
+    @GetMapping("/postImage/{accountId}/get/{imageName}")
+    public byte[] getPostImage(
+            @PathVariable("imageName") String imageName,
+            @PathVariable("account_id") long accountId
+    ) {
+        log.info("received image name is {}", imageName);
+        String path = String.format("src/main/resources/static/userdata/user_%s/post/%s",
+                accountId, imageName);
+
+        File file = new File(path);
+        byte[] imageBytes;
+        try {
+            imageBytes = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            throw new IllegalStateException("Photo not found", e);
         }
 
         return imageBytes;

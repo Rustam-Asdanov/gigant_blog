@@ -2,11 +2,13 @@ package com.gigant.blog.controller;
 
 import com.gigant.blog.model.Account;
 import com.gigant.blog.service.AccountService;
+import com.gigant.blog.service.UserPostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,19 +23,24 @@ public class MainController {
 
     private String folder = "";
     private final AccountService accountService;
+    private final UserPostService userPostService;
 
     @Autowired
-    public MainController(AccountService accountService) {
+    public MainController(AccountService accountService, UserPostService userPostService) {
         this.accountService = accountService;
+        this.userPostService = userPostService;
     }
 
     @GetMapping
     public String getMainPage(Authentication authentication,
                               HttpSession httpSession,
-                              SessionStatus sessionStatus) {
+                              SessionStatus sessionStatus,
+                              Model model) {
         if (authentication != null) {
             httpSession.setAttribute("user", accountService.getAccountByUsername(authentication.getName()));
         }
+
+        model.addAttribute("cardList",userPostService.getAllPosts());
 
         return folder + "main-page";
     }
